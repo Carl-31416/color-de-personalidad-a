@@ -1,16 +1,12 @@
-const TOTAL_PREGUNTAS = 17;
-// 4 puntos por opción x 4 opciones por pregunta x 17 preguntas = 272 puntos totales
-// 4 puntos por opción x 17 preguntas = 68 puntos máximo por color
-const MAX_PUNTOS_POR_COLOR = 68; 
+// El código es ahora flexible y no requiere TOTAL_PREGUNTAS
 const UMBRAL_COMBINACION = 25.0; // Umbral para considerar una tendencia fuerte
 
 function calcularResultado() {
-    // Definimos los 4 colores y sus contadores iniciales (PUNTOS ACUMULADOS)
     let conteoColores = {
-        rojo: 0,    // Analítico/Estructurado (VERDE en el doc)
-        amarillo: 0, // Líder/Dominante (AMARILLO en el doc)
-        verde: 0,   // Social/Influyente (ROJO en el doc)
-        azul: 0      // Servicial/Estable (AZUL en el doc)
+        rojo: 0,    // Analítico/Estructurado
+        amarillo: 0, // Líder/Dominante
+        verde: 0,   // Social/Influyente
+        azul: 0      // Servicial/Estable
     };
 
     const cuestionario = document.getElementById('cuestionario');
@@ -23,28 +19,26 @@ function calcularResultado() {
     cajaResultado.style.color = '#333';
 
     let preguntas = cuestionario.querySelectorAll('.pregunta');
+    let numeroPreguntas = preguntas.length;
     let preguntasIncompletas = 0;
 
-    // --- 1. Conteo de Puntos y Validación de al menos una respuesta por pregunta y no repetición ---
+    // --- 1. Conteo de Puntos y Validación ---
     preguntas.forEach(pregunta => {
-        // Busca todos los <select> dentro de la pregunta
         const selects = pregunta.querySelectorAll('select'); 
-        let clasificacionesUsadas = []; // Almacena 4, 3, 2, 1 o 0
-        let clasificacionesValidas = 0; // Cuenta cuántas clasificaciones fueron dadas (valor > 0)
+        let clasificacionesUsadas = []; 
+        let clasificacionesValidas = 0; 
 
         selects.forEach(select => {
-            const valor = parseInt(select.value); // El valor es el punto (4, 3, 2, 1 o 0)
+            const valor = parseInt(select.value); 
             const categoria = select.getAttribute('data-categoria');
 
             if (valor > 0) {
-                // Validación de repetición (Checa si ya se usó un valor de 1 a 4)
+                // Validación de repetición
                 if (clasificacionesUsadas.includes(valor)) {
-                    // Si el valor ya está, hay un error de repetición
-                    preguntasIncompletas = TOTAL_PREGUNTAS; // Dispara el error general
+                    preguntasIncompletas = numeroPreguntas; 
                     return; 
                 }
                 
-                // Si la clasificación es válida y no se repite:
                 clasificacionesUsadas.push(valor);
                 clasificacionesValidas++;
                 conteoColores[categoria] += valor;
@@ -58,7 +52,7 @@ function calcularResultado() {
     });
 
     // --- 2. Validación Final ---
-    if (preguntasIncompletas > 0 || preguntas.length !== TOTAL_PREGUNTAS) {
+    if (preguntasIncompletas > 0 || numeroPreguntas === 0) {
         cajaResultado.className = 'resultado';
         cajaResultado.innerHTML = `
             ⚠️ **Faltan clasificaciones o hay errores de repetición.**
@@ -71,11 +65,24 @@ function calcularResultado() {
         return;
     }
     
-    // --- 3. Cálculo de porcentajes (respecto al puntaje máximo de 68) ---
+    // --- 3. Cálculo de porcentajes (respecto al puntaje total de la persona) ---
+    
+    // 💡 PASO 1: Sumar el total de puntos obtenidos en TODAS las categorías.
+    let puntajeTotalAcumulado = 0;
+    for (const color in conteoColores) {
+        puntajeTotalAcumulado += conteoColores[color];
+    }
+    
+    if (puntajeTotalAcumulado === 0) {
+        cajaResultado.innerHTML = `⚠️ Error de cálculo. No se pudieron obtener puntos válidos.`;
+        return;
+    }
+
+    // 💡 PASO 2: Calcular el porcentaje de cada color sobre ese total (el 100%).
     let porcentajes = {};
     for (const color in conteoColores) {
-        // El porcentaje se calcula sobre el máximo de puntos posibles para esa categoría (68)
-        porcentajes[color] = ((conteoColores[color] / MAX_PUNTOS_POR_COLOR) * 100).toFixed(1);
+        // El porcentaje de la gráfica se calcula sobre el total de puntos de la persona.
+        porcentajes[color] = ((conteoColores[color] / puntajeTotalAcumulado) * 100).toFixed(1);
     }
     
     // 4. Mostrar el resultado y la gráfica
@@ -84,28 +91,31 @@ function calcularResultado() {
 
 function mostrarResultadoFinal(porcentajes, elemento) {
     
-    // --- 1. Generar la Gráfica de Pastel con 4 segmentos ---
-    
     // Aseguramos que los porcentajes sean números para los cálculos
-    const pRojo = parseFloat(porcentajes.rojo) || 0;
-    const pAmarillo = parseFloat(porcentajes.amarillo) || 0;
-    const pVerde = parseFloat(porcentajes.verde) || 0;
-    const pAzul = parseFloat(porcentajes.azul) || 0;
+    const pRojo = parseFloat(porcentajes.rojo) || 0;     // Analítico/Estructurado
+    const pAmarillo = parseFloat(porcentajes.amarillo) || 0; // Líder/Dominante
+    const pVerde = parseFloat(porcentajes.verde) || 0;   // Social/Influyente
+    const pAzul = parseFloat(porcentajes.azul) || 0;     // Servicial/Estable
     
     // Calcular dónde comienza cada segmento (sumando porcentajes)
     let startAmarillo = pRojo;
     let startVerde = startAmarillo + pAmarillo;
     let startAzul = startVerde + pVerde;
 
-    // Corrección de la sintaxis CSS: usar 'background' en lugar de 'background-image'
+    // Colores CSS para los perfiles (AHORA INVERTIDOS):
+    // ROJO/Analítico -> ROJO CSS (#e74c3c)
+    // AMARILLO/Dominante -> Amarillo CSS (#f1c40f)
+    // VERDE/Social -> VERDE CSS (#2ecc71)
+    // AZUL/Servicial -> Azul CSS (#3498db)
+    
     const pieChartStyle = `background: conic-gradient(
-        /* ROJO (Analítico) - Mapeado a VERDE en CSS */
-        #2ecc71 0% ${pRojo}%, 
-        /* AMARILLO (Dominante) */
+        /* ROJO (Analítico/Estructurado) - ROJO CSS */
+        #e74c3c 0% ${pRojo}%, 
+        /* AMARILLO (Líder/Dominante) - AMARILLO CSS */
         #f1c40f ${startAmarillo}% ${startVerde}%, 
-        /* VERDE (Social) - Mapeado a ROJO en CSS */
-        #e74c3c ${startVerde}% ${startAzul}%,
-        /* AZUL (Servicial) */
+        /* VERDE (Social/Influyente) - VERDE CSS */
+        #2ecc71 ${startVerde}% ${startAzul}%,
+        /* AZUL (Servicial/Estable) - AZUL CSS */
         #3498db ${startAzul}% 100%
     );`;
 
@@ -115,9 +125,9 @@ function mostrarResultadoFinal(porcentajes, elemento) {
         <div class="grafica-contenedor">
             <div id="pie-chart" style="${pieChartStyle}"></div>
             <div class="leyenda">
-                <p><span class="color-dot verde-bg"></span> Analítico/Estructurado (Rojo): <strong>${porcentajes.rojo}%</strong></p>
+                <p><span class="color-dot rojo-bg"></span> Analítico/Estructurado (Rojo): <strong>${porcentajes.rojo}%</strong></p>
                 <p><span class="color-dot amarillo-bg"></span> Líder/Dominante (Amarillo): <strong>${porcentajes.amarillo}%</strong></p>
-                <p><span class="color-dot rojo-bg"></span> Social/Influyente (Verde): <strong>${porcentajes.verde}%</strong></p>
+                <p><span class="color-dot verde-bg"></span> Social/Influyente (Verde): <strong>${porcentajes.verde}%</strong></p>
                 <p><span class="color-dot azul-bg"></span> Servicial/Estable (Azul): <strong>${porcentajes.azul}%</strong></p>
             </div>
         </div>
@@ -134,80 +144,66 @@ function mostrarResultadoFinal(porcentajes, elemento) {
 }
 
 // -------------------------------------------------------------------------------------------------
-// FUNCIÓN generarResumenTexto (Mantenida, ya tiene la retroalimentación completa)
+// FUNCIÓN generarResumenTexto (CORREGIDO: Se elimina el error de referencia y se usa UMBRAL_COMBINACION)
 // -------------------------------------------------------------------------------------------------
 
 function generarResumenTexto(porcentajes) {
-    let texto = `<p>Tu perfil es una combinación de fortalezas. A continuación, un análisis de tus **tendencias principales** (aquellas que superan el ${UMBRAL_COMBINACION}%):</p>`;
+    // 💡 CORRECCIÓN: Se usa la variable UMBRAL_COMBINACION correctamente
+    let texto = `<p>Tu perfil es una combinación de fortalezas. A continuación, un análisis de las **cuatro tendencias** que componen tu perfil, ordenadas de mayor a menor relevancia:</p>`;
     
-    // Objeto con la información COMPLETA del documento (mapeado a los colores del código)
+    // Objeto de información de perfiles (sin cambios, ya es correcto)
     const perfiles = {
-        // ROJO (Analítico/Estructurado, es VERDE en el doc)
         rojo: {
-            nombre: 'Analítico/Estructurado',
-            fortalezas: ['Puntuales', 'Planificadores', 'Organizados', 'Estructurados'], 
-            debilidades: ['Pesimistas', 'Dudan', 'Analizan de más', 'Piensan mucho y no accionan'], 
-            miedo: 'Conflictos y discusiones', 
-            motivador: 'Reglas y procedimientos',
-            comportamiento: 'En una llamada, pregunta por datos específicos y pide información para revisarla. Es frío y estructurado.',
-            evita: 'Cantinflear, ser desordenado e impuntual.',
-            recomendacion: 'Estudia MUY BIEN los productos. Si no sabes algo, reconócelo y cumple el plazo de respuesta.',
-            clase_color: 'verde-bg-ligero', dot_color: 'verde-bg'
+            nombre: 'Analítico/Estructurado', fortalezas: ['Puntuales', 'Planificadores', 'Organizados', 'Estructurados'], debilidades: ['Pesimistas', 'Dudan', 'Analizan de más', 'Piensan mucho y no accionan'], miedo: 'Conflictos y discusiones', motivador: 'Reglas y procedimientos', comportamiento: 'En una llamada, pregunta por datos específicos y pide información para revisarla. Es frío y estructurado.', evita: 'Ser superficial, falta de detalles e impuntualidad.', recomendacion: 'Estudia MUY BIEN los productos. Si no sabes algo, reconócelo y cumple el plazo de respuesta.', clase_color: 'rojo-bg-ligero', dot_color: 'rojo-bg'
         },
-        // AMARILLO (Líder/Dominante, es AMARILLO en el doc)
         amarillo: {
-            nombre: 'Líder/Dominante',
-            fortalezas: ['Dirigen', 'De resultados', 'Determinados', 'Líderes Natos', 'Audaces'], 
-            debilidades: ['Interrumpen', 'No tienen tacto', 'Muy impacientes', 'No piden disculpas', 'Confrontantes'], 
-            miedo: 'Fallar', 
-            motivador: 'El poder',
-            comportamiento: 'Hace preguntas desafiantes ("¿Qué gano?"). Adopta una postura impositiva y busca demostrar que él sabe más.',
-            evita: 'Confrontarlo.',
-            recomendacion: 'Dale la razón. Hazle ver que él tomó la mejor decisión y halágalo de manera genuina.',
-            clase_color: 'amarillo-bg-ligero', dot_color: 'amarillo-bg'
+            nombre: 'Líder/Dominante', fortalezas: ['Dirigen', 'De resultados', 'Determinados', 'Líderes Natos', 'Audaces'], debilidades: ['Interrumpen', 'No tienen tacto', 'Muy impacientes', 'No piden disculpas', 'Confrontantes'], miedo: 'Fallar', motivador: 'El poder', comportamiento: 'Hace preguntas desafiantes ("¿Qué gano?"). Adopta una postura impositiva y busca demostrar que él sabe más.', evita: 'Ser lento, dar rodeos o confrontarlo directamente.', recomendacion: 'Dale la razón. Hazle ver que él tomó la mejor decisión y halágalo de manera genuina.', clase_color: 'amarillo-bg-ligero', dot_color: 'amarillo-bg'
         },
-        // VERDE (Social/Influyente, es ROJO en el doc)
         verde: {
-            nombre: 'Social/Influyente',
-            fortalezas: ['Extrovertidos', 'Positivos', 'Expresivos', 'Carismáticos', 'Entusiastas'], 
-            debilidades: ['Postergan', 'Desatentos a los detalles', 'Impuntuales', 'Hablan mucho', 'Impulsivos'], 
-            miedo: 'Rechazo', 
-            motivador: 'Reconocimiento',
-            comportamiento: 'Quiere "echar chisme" y extender la plática personal. Es inquieto, pero busca influenciar a la gente.',
-            evita: 'Ser rígido, obligarlo a tomar decisiones de forma rápida.',
-            recomendacion: 'Utiliza visuales. Sé su guía sin obligarlo. Hazle ver que es divertido trabajar contigo.',
-            clase_color: 'rojo-bg-ligero', dot_color: 'rojo-bg'
+            nombre: 'Social/Influyente', fortalezas: ['Extrovertidos', 'Positivos', 'Expresivos', 'Carismáticos', 'Entusiastas'], debilidades: ['Postergan', 'Desatentos a los detalles', 'Impuntuales', 'Hablan mucho', 'Impulsivos'], miedo: 'Rechazo', motivador: 'Reconocimiento', comportamiento: 'Quiere "echar chisme" y extender la plática personal. Es inquieto, pero busca influenciar a la gente.', evita: 'Ser rígido, obligarlo a tomar decisiones de forma rápida y el silencio prolongado.', recomendacion: 'Utiliza visuales. Sé su guía sin obligarlo. Hazle ver que es divertido trabajar contigo.', clase_color: 'verde-bg-ligero', dot_color: 'verde-bg'
         },
-        // AZUL (Servicial/Estable, es AZUL en el doc)
         azul: { 
-            nombre: 'Servicial/Estable',
-            fortalezas: ['Ayudan', 'Conciliadores', 'Empáticos', 'Leales', 'Te escuchan', 'Serviciales'], 
-            debilidades: ['Lentos para hablar', 'Temerosos', 'No les gusta el cambio', 'No le gusta decidir', 'Reacciona lento'], 
-            miedo: 'El cambio', 
-            motivador: 'La seguridad',
-            comportamiento: 'Responde amablemente. Te pone toda la atención, es súper bonachón. No cancela por no ser grosero.',
-            evita: 'Confrontar, números, datos, presionar.',
-            recomendacion: 'Hazlo visualizar los beneficios. Dale seguridad. Necesita tiempo para asimilar las ideas.',
-            clase_color: 'azul-bg-ligero', dot_color: 'azul-bg'
+            nombre: 'Servicial/Estable', fortalezas: ['Ayudan', 'Conciliadores', 'Empáticos', 'Leales', 'Te escuchan', 'Serviciales'], debilidades: ['Lentos para hablar', 'Temerosos', 'No les gusta el cambio', 'No le gusta decidir', 'Reacciona lento'], miedo: 'El cambio', motivador: 'La seguridad', comportamiento: 'Responde amablemente. Te pone toda la atención, es súper bonachón. No cancela por no ser grosero.', evita: 'Presionar, confrontar, forzar un cambio rápido y usar muchos datos/cifras.', recomendacion: 'Hazlo visualizar los beneficios. Dale seguridad. Necesita tiempo para asimilar las ideas.', clase_color: 'azul-bg-ligero', dot_color: 'azul-bg'
         }
     };
     
-    const colores = ['rojo', 'amarillo', 'verde', 'azul'];
-    let perfilesEncontrados = 0;
+    // 1. Convertir porcentajes a un array de objetos
+    const tendencias = Object.keys(porcentajes).map(color => ({
+        color: color,
+        porcentaje: parseFloat(porcentajes[color])
+    }));
+
+    // 2. Ordenar: Todos los colores, de mayor a menor porcentaje.
+    const tendenciasOrdenadas = tendencias
+        .sort((a, b) => b.porcentaje - a.porcentaje); // Orden descendente
     
-    colores.forEach(color => {
-        const porcentaje = parseFloat(porcentajes[color]);
+    // 3. Generar el resumen usando el array ordenado (se muestran todos los 4)
+    tendenciasOrdenadas.forEach(tendencia => {
+        const color = tendencia.color;
+        const porcentaje = tendencia.porcentaje;
+        const perfil = perfiles[color];
         
-        if (porcentaje >= UMBRAL_COMBINACION) {
-            const perfil = perfiles[color];
-            
+        if (perfil) {
+            // Se define la clase de estilo basada en el UMBRAL_COMBINACION
+            const esTendenciaFuerte = tendencia.porcentaje >= UMBRAL_COMBINACION;
+            const claseAdicional = esTendenciaFuerte ? 'tendencia-fuerte' : 'tendencia-secundaria';
+
             // INICIO DEL BLOQUE DE PERFIL
-            texto += `<div class="perfil-resumen ${perfil.clase_color}">`;
+            texto += `<div class="perfil-resumen ${perfil.clase_color} ${claseAdicional}">`;
             
             // Título
-            texto += `<h4><span class="color-dot ${perfil.dot_color}"></span> Tendencia ${color.toUpperCase()} (${perfil.nombre}): ${porcentaje}%</h4>`;
+            let titulo = `<h4><span class="color-dot ${perfil.dot_color}"></span> Tendencia ${color.toUpperCase()} (${perfil.nombre}): ${porcentaje}%`;
             
-            // Comportamiento Clave (Nueva Sección)
+            if (esTendenciaFuerte) {
+                 titulo += ` (PRINCIPAL) `;
+            } else {
+                 titulo += ` (Secundaria/Baja) `;
+            }
+
+            titulo += `</h4>`;
+            texto += titulo;
+            
+            // Comportamiento Clave 
             texto += `<div class="tip-section comportamiento">
                         <span class="tip-icon">👤</span>
                         <strong>Comportamiento Clave:</strong> ${perfil.comportamiento}
@@ -247,14 +243,8 @@ function generarResumenTexto(porcentajes) {
                       </div>`;
             
             texto += `</div>`; // Fin del bloque de perfil
-            
-            perfilesEncontrados++;
         }
     });
 
-    if (perfilesEncontrados === 0) {
-         texto += `<p>Tu perfil es muy balanceado, sin una sola tendencia clara que supere el ${UMBRAL_COMBINACION}%. Eres una persona muy adaptable y versátil.</p>`;
-    }
-    
     return texto;
 }
