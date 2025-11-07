@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuestionario de Personalidad por Colores (Clasificación)</title>
+    <link rel="stylesheet" href="styles.css"> 
+</head>
+<body>
+    <div class="container">
+        <h1>Descubre tu Color de Personalidad</h1>
+        <p>Asigna una clasificación a cada opción de la pregunta: **(1) Más te representa** (valor 4), **(2) Bastante**, **(3) Un poco**, **(4) Menos** (valor 1). Puedes dejar opciones en N/A (valor 0), pero debes clasificar **al menos una** por pregunta y **no repetir clasificaciones**.</p>
+
+        <form id="cuestionario">
+            
+            <div class="pregunta" data-id="p1">
+                <p>1. Cuando trabajas en un proyecto, ¿cuál es tu enfoque principal?</p>
+                <div class="opciones-clasificacion">
+                    <label>A. <strong>Analizar la estructura</strong> y asegurar la lógica.</label>
+                    <select name="p1-rojo" data-categoria="rojo">
+                        <option value="0">N/A</option>
+                        <option value="4">Más me representa (1)</option>
+                        <option value="3">Bastante (2)</option>
+                        <option value="2">Un poco (3)</option>
+                        <option value="1">Menos (4)</option>
+                    </select>
+                </div>
+                <div class="opciones-clasificacion">
+                    <label>B. <strong>Obtener resultados</strong> rápidamente y dirigir la acción.</label>
+                    <select name="p1-amarillo" data-categoria="amarillo">
+                        <option value="0">N/A</option>
+                        <option value="4">Más me representa (1)</option>
+                        <option value="3">Bastante (2)</option>
+                        <option value="2">Un poco (3)</option>
+                        <option value="1">Menos (4)</option>
+                    </select>
+                </div>
+                <div class="opciones-clasificacion">
+                    <label>C. <strong>Generar entusiasmo</strong> y que la gente se sienta bien.</label>
+                    <select name="p1-verde" data-categoria="verde">
+                        <option value="0">N/A</option>
+                        <option value="4">Más me representa (1)</option>
+                        <option value="3">Bastante (2)</option>
+                        <option value="2">Un poco (3)</option>
+                        <option value="1">Menos (4)</option>
+                    </select>
+                </div>
+                <div class="opciones-clasificacion">
+                    <label>D. <strong>Ayudar</strong> a los demás y mantener la paz en el equipo.</label>
+                    <select name="p1-azul" data-categoria="azul">
+                        <option value="0">N/A</option>
+                        <option value="4">Más me representa (1)</option>
+                        <option value="3">Bastante (2)</option>
+                        <option value="2">Un poco (3)</option>
+                        <option value="1">Menos (4)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="pregunta" data-id="p2">
+                <p>2. ¿Qué te motiva a tomar una decisión o iniciar una acción?</p>
+                <div class="opciones-clasificacion">
+                    <label>A. <strong>Las reglas y procedimientos</strong> claros.</label>
+                    <select name="p2-rojo" data-categoria="rojo">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+                <div class="opciones-clasificacion">
+                    <label>B. <strong>El poder</strong> y la habilidad para mover las cosas.</label>
+                    <select name="p2-amarillo" data-categoria="amarillo">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+                <div class="opciones-clasificacion">
+                    <label>C. <strong>El reconocimiento</strong> y la posibilidad de influir en otros.</label>
+                    <select name="p2-verde" data-categoria="verde">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+                <div class="opciones-clasificacion">
+                    <label>D. <strong>La seguridad</strong> y evitar cualquier cambio brusco.</label>
+                    <select name="p2-azul" data-categoria="azul">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="pregunta" data-id="p3">
+                <p>3. ¿Cuál es tu mayor temor o preocupación?</p>
+                <div class="opciones-clasificacion">
+                    <label>A. <strong>Conflictos</strong> y discusiones.</label>
+                    <select name="p3-rojo" data-categoria="rojo">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+                <div class="opciones-clasificacion">
+                    <label>B. <strong>Fallar</strong> o mostrar debilidad.</label>
+                    <select name="p3-amarillo" data-categoria="amarillo">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+                <div class="opciones-clasificacion">
+                    <label>C. <strong>El rechazo</strong> social o el desagrado de los demás.</label>
+                    <select name="p3-verde" data-categoria="verde">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+                <div class="opciones-clasificacion">
+                    <label>D. <strong>El cambio</strong> en la rutina o en el entorno.</label>
+                    <select name="p3-azul" data-categoria="azul">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="pregunta" data-id="p4">
+                <p>4. ¿Cómo reaccionas ante una situación de estrés?</p>
+                <div class="opciones-clasificacion">
+                    <label>A. Pienso <strong>mucho</strong> y <strong>no acciono</strong> inmediatamente.</label>
+                    <select name="p4-rojo" data-categoria="rojo">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+                <div class="opciones-clasificacion">
+                    <label>B. Me vuelvo <strong>iracundo o confrontante</strong>.</label>
+                    <select name="p4-amarillo" data-categoria="amarillo">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+                <div class="opciones-clasificacion">
+                    <label>C. Me <strong>distraigo</strong> o me vuelvo impulsivo.</label>
+                    <select name="p4-verde" data-categoria="verde">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+                <div class="opciones-clasificacion">
+                    <label>D. Reacciono <strong>lento</strong> y me pongo de <strong>tapete</strong>.</label>
+                    <select name="p4-azul" data-categoria="azul">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="pregunta" data-id="p5">
+                <p>5. ¿Cómo te comportas al teléfono con alguien que te quiere vender algo?</p>
+                <div class="opciones-clasificacion">
+                    <label>A. Pregunto por <strong>datos específicos</strong> y pido información para revisarla.</label>
+                    <select name="p5-rojo" data-categoria="rojo">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+                <div class="opciones-clasificacion">
+                    <label>B. Hago <strong>preguntas desafiantes</strong> como "¿Qué gano?".</label>
+                    <select name="p5-amarillo" data-categoria="amarillo">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+                <div class="opciones-clasificacion">
+                    <label>C. <strong>Quiero "echar chisme"</strong> y extender la plática personal.</label>
+                    <select name="p5-verde" data-categoria="verde">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+                <div class="opciones-clasificacion">
+                    <label>D. Respondo <strong>amablemente</strong> y escucho todo para no ser grosero.</label>
+                    <select name="p5-azul" data-categoria="azul">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="pregunta" data-id="p6">
+                <p>6. En cuanto a la organización personal, tiendes a ser:</p>
+                <div class="opciones-clasificacion">
+                    <label>A. <strong>Puntual, planificador</strong> y disciplinado.</label>
+                    <select name="p6-rojo" data-categoria="rojo">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+                <div class="opciones-clasificacion">
+                    <label>B. <strong>Habilidoso</strong> pero con poco tacto para las interrupciones.</label>
+                    <select name="p6-amarillo" data-categoria="amarillo">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+                <div class="opciones-clasificacion">
+                    <label>C. <strong>Desordenado e impuntual</strong>.</label>
+                    <select name="p6-verde" data-categoria="verde">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+                <div class="opciones-clasificacion">
+                    <label>D. <strong>Cauteloso</strong> y prefiero la zona de confort.</label>
+                    <select name="p6-azul" data-categoria="azul">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="pregunta" data-id="p7">
+                <p>7. ¿Qué es lo que más te cuesta trabajo hacer?</p>
+                <div class="opciones-clasificacion">
+                    <label>A. Dar <strong>apoyo emocional</strong> a otros.</label>
+                    <select name="p7-rojo" data-categoria="rojo">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+                <div class="opciones-clasificacion">
+                    <label>B. <strong>Reconocer errores</strong> o pedir disculpas.</label>
+                    <select name="p7-amarillo" data-categoria="amarillo">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+                <div class="opciones-clasificacion">
+                    <label>C. <strong>Prestar atención a los detalles</strong> y evitar postergar.</label>
+                    <select name="p7-verde" data-categoria="verde">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+                <div class="opciones-clasificacion">
+                    <label>D. <strong>Decidir</strong> algo o salir de la zona de confort.</label>
+                    <select name="p7-azul" data-categoria="azul">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="pregunta" data-id="p8">
+                <p>8. ¿Cómo te sientes cuando estás solo?</p>
+                <div class="opciones-clasificacion">
+                    <label>A. Cómodo, disfruto ser <strong>solitario</strong>.</label>
+                    <select name="p8-rojo" data-categoria="rojo">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+                <div class="opciones-clasificacion">
+                    <label>B. Bien, me da <strong>poder</strong> y espacio para dirigir.</label>
+                    <select name="p8-amarillo" data-categoria="amarillo">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+                <div class="opciones-clasificacion">
+                    <label>C. <strong>No me gusta estar solo</strong>.</label>
+                    <select name="p8-verde" data-categoria="verde">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+                <div class="opciones-clasificacion">
+                    <label>D. Lo uso para <strong>transmitir paz</strong> y ser hospitalario con quien llega.</label>
+                    <select name="p8-azul" data-categoria="azul">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="pregunta" data-id="p9">
+                <p>9. ¿Cuál de estas palabras describe mejor tu manera de ser?</p>
+                <div class="opciones-clasificacion">
+                    <label>A. <strong>Escéptico</strong>.</label>
+                    <select name="p9-rojo" data-categoria="rojo">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+                <div class="opciones-clasificacion">
+                    <label>B. <strong>Determinado</strong>.</label>
+                    <select name="p9-amarillo" data-categoria="amarillo">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+                <div class="opciones-clasificacion">
+                    <label>C. <strong>Carismático</strong>.</label>
+                    <select name="p9-verde" data-categoria="verde">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+                <div class="opciones-clasificacion">
+                    <label>D. <strong>Leal</strong>.</label>
+                    <select name="p9-azul" data-categoria="azul">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="pregunta" data-id="p10">
+                <p>10. ¿Qué te frustra más en la interacción con otros?</p>
+                <div class="opciones-clasificacion">
+                    <label>A. Que alguien <strong>"cantinflee"</strong> o sea desordenado.</label>
+                    <select name="p10-rojo" data-categoria="rojo">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+                <div class="opciones-clasificacion">
+                    <label>B. Que te <strong>confronten</strong> o no te sigan.</label>
+                    <select name="p10-amarillo" data-categoria="amarillo">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+                <div class="opciones-clasificacion">
+                    <label>C. Que te <strong>guíen de forma rígida</strong> y no te permitan expresarte.</label>
+                    <select name="p10-verde" data-categoria="verde">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+                <div class="opciones-clasificacion">
+                    <label>D. Que te <strong>presionen</strong> o te exijan números y datos.</label>
+                    <select name="p10-azul" data-categoria="azul">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="pregunta" data-id="p11">
+                <p>11. En una cita o reunión de negocios, ¿cómo te presentas?</p>
+                <div class="opciones-clasificacion">
+                    <label>A. <strong>Puntual</strong>, exigiendo números, ROI y estructura.</label>
+                    <select name="p11-rojo" data-categoria="rojo">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+                <div class="opciones-clasificacion">
+                    <label>B. Con <strong>postura impositiva</strong>, demostrando que sabes más.</label>
+                    <select name="p11-amarillo" data-categoria="amarillo">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+                <div class="opciones-clasificacion">
+                    <label>C. <strong>Inquieto</strong>, queriendo hablar de ti y de tu vida.</label>
+                    <select name="p11-verde" data-categoria="verde">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+                <div class="opciones-clasificacion">
+                    <label>D. Poniendo <strong>toda la atención</strong>, siendo bonachón y servicial.</label>
+                    <select name="p11-azul" data-categoria="azul">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="pregunta" data-id="p12">
+                <p>12. ¿Cuál es tu estilo al dar órdenes o dirigir?</p>
+                <div class="opciones-clasificacion">
+                    <label>A. <strong>Diplomático</strong> y respetuoso, buscando que se sigan las reglas.</label>
+                    <select name="p12-rojo" data-categoria="rojo">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+                <div class="opciones-clasificacion">
+                    <label>B. <strong>Directo</strong> y sin tacto; simplemente <strong>ordenas</strong>.</label>
+                    <select name="p12-amarillo" data-categoria="amarillo">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+                <div class="opciones-clasificacion">
+                    <label>C. <strong>Persuasivo</strong>, usando tu carisma para influenciar a la gente.</label>
+                    <select name="p12-verde" data-categoria="verde">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+                <div class="opciones-clasificacion">
+                    <label>D. <strong>Evitas decidir</strong>, me pongo de tapete para no pelear.</label>
+                    <select name="p12-azul" data-categoria="azul">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="pregunta" data-id="p13">
+                <p>13. Cuando se trata de hablar, ¿qué te sucede más a menudo?</p>
+                <div class="opciones-clasificacion">
+                    <label>A. <strong>No comparto mis sentimientos</strong> y puedo sonar frío.</label>
+                    <select name="p13-rojo" data-categoria="rojo">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+                <div class="opciones-clasificacion">
+                    <label>B. Soy <strong>dominante</strong> y tengo un trato duro.</label>
+                    <select name="p13-amarillo" data-categoria="amarillo">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+                <div class="opciones-clasificacion">
+                    <label>C. <strong>Hablo mucho</strong> y soy expresivo.</label>
+                    <select name="p13-verde" data-categoria="verde">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+                <div class="opciones-clasificacion">
+                    <label>D. <strong>Hablo bajo</strong> y soy lento para hablar en general.</label>
+                    <select name="p13-azul" data-categoria="azul">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="pregunta" data-id="p14">
+                <p>14. ¿Cuál de estos adjetivos aplica a tu actitud general?</p>
+                <div class="opciones-clasificacion">
+                    <label>A. <strong>Perfeccionista</strong>.</label>
+                    <select name="p14-rojo" data-categoria="rojo">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+                <div class="opciones-clasificacion">
+                    <label>B. <strong>Audaz</strong>.</label>
+                    <select name="p14-amarillo" data-categoria="amarillo">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+                <div class="opciones-clasificacion">
+                    <label>C. <strong>Confiado</strong>.</label>
+                    <select name="p14-verde" data-categoria="verde">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+                <div class="opciones-clasificacion">
+                    <label>D. <strong>Empático</strong>.</label>
+                    <select name="p14-azul" data-categoria="azul">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="pregunta" data-id="p15">
+                <p>15. ¿Cómo te sientes respecto a la disciplina?</p>
+                <div class="opciones-clasificacion">
+                    <label>A. Es <strong>crucial</strong>, soy una persona disciplinada.</label>
+                    <select name="p15-rojo" data-categoria="rojo">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+                <div class="opciones-clasificacion">
+                    <label>B. La <strong>uso para mover al mundo</strong> y ser determinado.</label>
+                    <select name="p15-amarillo" data-categoria="amarillo">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+                <div class="opciones-clasificacion">
+                    <label>C. Es <strong>molesta</strong>, prefiero lo espontáneo.</label>
+                    <select name="p15-verde" data-categoria="verde">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+                <div class="opciones-clasificacion">
+                    <label>D. Es buena si <strong>garantiza la seguridad</strong> y evita problemas.</label>
+                    <select name="p15-azul" data-categoria="azul">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="pregunta" data-id="p16">
+                <p>16. ¿Qué buscas en una conversación que te interesa?</p>
+                <div class="opciones-clasificacion">
+                    <label>A. Que sea <strong>precisa</strong> y me dé datos.</label>
+                    <select name="p16-rojo" data-categoria="rojo">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+                <div class="opciones-clasificacion">
+                    <label>B. Que sea <strong>directa</strong> y vaya a los resultados.</label>
+                    <select name="p16-amarillo" data-categoria="amarillo">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+                <div class="opciones-clasificacion">
+                    <label>C. Que te permita <strong>contar tu vida</strong> y usar visuales.</label>
+                    <select name="p16-verde" data-categoria="verde">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+                <div class="opciones-clasificacion">
+                    <label>D. Que te <strong>escuchen</strong> y te transmitan paz.</label>
+                    <select name="p16-azul" data-categoria="azul">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="pregunta" data-id="p17">
+                <p>17. ¿Qué tipo de humor es el que más se asocia contigo?</p>
+                <div class="opciones-clasificacion">
+                    <label>A. <strong>Humor ácido</strong> o sarcástico.</label>
+                    <select name="p17-rojo" data-categoria="rojo">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+                <div class="opciones-clasificacion">
+                    <label>B. Humor <strong>competitivo</strong> y audaz.</label>
+                    <select name="p17-amarillo" data-categoria="amarillo">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+                <div class="opciones-clasificacion">
+                    <label>C. Humor <strong>expresivo y visual</strong>.</label>
+                    <select name="p17-verde" data-categoria="verde">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+                <div class="opciones-clasificacion">
+                    <label>D. Humor <strong>cauteloso</strong> y servicial.</label>
+                    <select name="p17-azul" data-categoria="azul">
+                        <option value="0">N/A</option><option value="4">Más me representa (1)</option><option value="3">Bastante (2)</option><option value="2">Un poco (3)</option><option value="1">Menos (4)</option>
+                    </select>
+                </div>
+            </div>
+            
+            <button type="button" onclick="calcularResultado()">Ver mi Perfil de Color</button>
+        </form>
+
+        <div id="caja-resultado" class="resultado">
+            Haz clic en "Ver mi Perfil de Color" para descubrirlo.
+        </div>
+
+        <script src="script.js"></script> 
+    </div>
+</body>
+</html>

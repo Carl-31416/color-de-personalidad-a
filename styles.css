@@ -1,0 +1,299 @@
+/* --- 1. AJUSTES GENERALES Y TIPOGRAFÍA --- */
+
+body {
+    /* Letra mantenida en 18px */
+    font-size: 18px; 
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Alinea al inicio, no al centro vertical */
+    min-height: 100vh;
+    margin: 0;
+    padding: 30px 20px;
+    box-sizing: border-box;
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    /* CAMBIO 1: Aumentado el área de trabajo para hacerlo más ancho */
+    max-width: 1100px; 
+    width: 100%;
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 2em; /* Título más grande */
+}
+
+h4 {
+    font-size: 1.15em;
+}
+
+p {
+    color: #555;
+    line-height: 1.7;
+}
+
+/* --- 2. ESTILOS DEL CUESTIONARIO --- */
+
+.pregunta {
+    margin-bottom: 30px;
+    padding: 18px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #ffffff;
+}
+
+.pregunta p {
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #333;
+    font-size: 1.1em;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 18px;
+    margin-top: 40px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* --- 3. ESTILOS DEL RESULTADO Y GRÁFICA --- */
+
+.resultado {
+    margin-top: 40px;
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    font-size: 1.1em;
+    color: #333;
+    transition: all 0.8s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.grafica-contenedor {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: space-around;
+    align-items: center;
+    margin: 30px 0;
+    gap: 30px;
+}
+
+#pie-chart {
+    /* Gráfica más grande (240px) */
+    width: 240px; 
+    height: 240px;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.leyenda {
+    text-align: left;
+    font-size: 1em;
+}
+
+.color-dot {
+    height: 12px; 
+    width: 12px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 8px;
+}
+
+.resumen-texto h3 {
+    margin-top: 35px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 8px;
+}
+
+.resumen-texto ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+/* --- 4. CLASES DE COLORES --- */
+
+.rojo-bg { background-color: #e74c3c; } 
+.amarillo-bg { background-color: #f1c40f; } 
+.verde-bg { background-color: #2ecc71; } 
+.azul-bg { background-color: #3498db; } 
+.gris-bg { background-color: #6c757d; } 
+
+.rojo-bg-ligero {
+    background-color: #fce4e4; 
+    border-color: #e74c3c;
+}
+.amarillo-bg-ligero {
+    background-color: #fff8e1; 
+    border-color: #f1c40f; 
+}
+.verde-bg-ligero {
+    background-color: #e8f5e9; 
+    border-color: #2ecc71;
+}
+.azul-bg-ligero {
+    background-color: #e6f0fa; 
+    border-color: #3498db; 
+}
+
+.resultado.gris {
+    background-color: #6c757d; 
+    color: white !important;
+}
+
+/* --- ESTILOS PARA LA RETROALIMENTACIÓN COMPLETA --- */
+
+.fortaleza-debilidad {
+    display: flex;
+    gap: 20px;
+    margin: 15px 0;
+    padding: 10px 0;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+
+.fortaleza-debilidad > div {
+    flex: 1;
+}
+
+.fortaleza-debilidad p {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #444;
+}
+
+.fortaleza-debilidad ul {
+    list-style: disc;
+    padding-left: 20px;
+    font-size: 0.95em;
+}
+
+.miedo-motivador {
+    font-style: italic;
+    margin: 20px 0;
+    padding: 10px 0;
+    border-top: 1px dashed #ddd;
+    border-bottom: 1px dashed #ddd;
+}
+
+/* ESTILOS AUDACES PARA RECOMENDACIÓN Y EVITAR */
+.tip-section {
+    padding: 15px 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.tip-section strong {
+    font-weight: 700;
+}
+
+.tip-icon {
+    font-size: 1.4em; 
+    flex-shrink: 0;
+}
+
+.tip-section.comportamiento {
+    background-color: #f7f7f7;
+    border-left: 5px solid #007bff;
+    font-size: 0.95em;
+}
+
+.tip-section.recomendacion {
+    background-color: #e6fff0; 
+    border-left: 5px solid #28a745; 
+    color: #333;
+}
+
+.tip-section.evita {
+    background-color: #fff0f0; 
+    border-left: 5px solid #dc3545; 
+    color: #333;
+}
+
+/* Estilos para el nuevo sistema de Clasificación */
+
+.opciones-clasificacion {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    margin-bottom: 10px;
+    background-color: #f8f9fa;
+    padding: 12px 18px;
+    border-radius: 7px;
+    border: 1px solid #eee; 
+}
+
+.opciones-clasificacion label {
+    display: block; 
+    flex-grow: 1;
+    margin-bottom: 0; 
+    padding: 0; 
+    background-color: transparent; 
+    cursor: default;
+}
+
+.opciones-clasificacion select {
+    padding: 8px 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1em;
+    cursor: pointer;
+    flex-shrink: 0; 
+}
+
+.opciones-clasificacion label strong {
+    font-weight: bold;
+    color: #007bff; 
+}
+
+/* --- MEDIA QUERIES PARA RESPONSIVENESS (MÓVILES) --- */
+@media (max-width: 768px) {
+    /* Ajustes generales para pantallas pequeñas */
+    body {
+        padding: 15px 10px;
+        font-size: 16px;
+    }
+
+    .container {
+        padding: 20px 15px;
+    }
+
+    /* La gráfica se centra y se pone arriba de la leyenda */
+    .grafica-contenedor {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    /* La gráfica se hace un poco más pequeña para no ser excesiva en móvil */
+    #pie-chart {
+        width: 200px;
+        height: 200px;
+    }
+
+    /* Las fortalezas y debilidades se apilan verticalmente */
+    .fortaleza-debilidad {
+        flex-direction: column;
+    }
+}
